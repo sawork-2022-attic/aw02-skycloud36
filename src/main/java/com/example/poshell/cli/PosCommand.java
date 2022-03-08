@@ -36,6 +36,31 @@ public class PosCommand {
         if (posService.add(productId, amount)) {
             return posService.getCart().toString();
         }
-        return "ERROR";
+        return "Add Failed";
     }
+
+    @ShellMethod(value = "Print the Cart", key = "pc")
+    public String printCart(){
+        if(this.posService.getCart() == null){
+            return "You don't have a cart, Press 'n' to create one";
+        }
+        return this.posService.getCart().toString();
+    }
+
+    @ShellMethod(value = "Modify product from Cart", key = "m")
+    public String modifyCart(String productId, int amount){
+        if (posService.modify(productId, amount)) {
+            return posService.getCart().toString();
+        }
+        return "Modify Failed";
+    }
+
+    @ShellMethod(value = "Empty the Cart", key = "e")
+    public String emptyCart(){
+        if (posService.empty()) {
+            return posService.getCart().toString();
+        }
+        return "Empty Failed";
+    }
+
 }

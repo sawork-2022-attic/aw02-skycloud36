@@ -55,6 +55,20 @@ public class PosServiceImp implements PosService {
     }
 
     @Override
+    public boolean modify(String productId, int amount){
+        Product product = posDB.getProduct(productId);
+        if (product == null) return false;
+
+        this.getCart().modifyItem(new Item(product, amount));
+        return true;
+    }
+
+    @Override
+    public boolean empty(){
+        return this.getCart().emptyCart();
+    }
+
+    @Override
     public List<Product> products() {
         return posDB.getProducts();
     }
