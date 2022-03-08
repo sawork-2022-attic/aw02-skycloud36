@@ -20,6 +20,8 @@ public interface PosService {
 
     public boolean modify(String productId, int amount);
 
+    public boolean delete(String productId);
+
     public boolean empty();
 
 

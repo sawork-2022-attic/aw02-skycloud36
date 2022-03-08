@@ -63,4 +63,12 @@ public class PosCommand {
         return "Empty Failed";
     }
 
+    @ShellMethod(value = "Delete the Item from Cart", key = "d")
+    public String deleteCart(String productId){
+        if (posService.delete(productId)) {
+            return "Delete Success\n" + posService.getCart().toString();
+        }
+        return "Delete Failed";
+    }
+
 }
